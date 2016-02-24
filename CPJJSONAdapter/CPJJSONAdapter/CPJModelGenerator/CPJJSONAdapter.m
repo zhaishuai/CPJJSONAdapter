@@ -120,7 +120,6 @@ enum CPJModelVar{CPJModelProperty, CPJModelParam, CPJModelType, CPJModelVarCount
             if(arr.count == CPJModelVarCount){
                 property.propertyName = arr[CPJModelProperty];
                 property.modelParam = arr[CPJModelParam];
-                NSLog(@"%@", arr[CPJModelType]);
                 property.modelType = NSClassFromString(arr[CPJModelType]);
                 [propertyList addObject:property];
             }
@@ -143,6 +142,10 @@ enum CPJModelVar{CPJModelProperty, CPJModelParam, CPJModelType, CPJModelVarCount
     [paths removeObjectAtIndex:0];
     
     if([json isKindOfClass:[NSDictionary class]]){
+        if(![json objectForKey:key]){
+            NSLog(@"key: %@ 不存在!", key);
+            return nil;
+        }
         json = [json objectForKey:key];
     }else if([json isKindOfClass:[NSArray class]]){
         NSInteger index = [key integerValue];
