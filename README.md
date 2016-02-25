@@ -19,9 +19,28 @@
 <p>在CPJModels.h文件中(CPJModels只是一个示例，可以自行更改其名称)声明model其代码如下所示：</p>
 ```objective-c
 CREATE_CPJMODEL_BEGAIN(MSMAge)
-    CPJMODEL_ADD_NSNUMBER_PROPERTY(range, range)
-    CPJMODEL_ADD_NSSTRING_PROPERTY(value, value)
+    CPJMODEL_ADD_NSNUMBER_PROPERTY(range, range_interface)
+    CPJMODEL_ADD_NSSTRING_PROPERTY(value, value_interface)
 CREATE_CPJMODEL_END
 ```
+<p>在在CPJModels.m文件中</p>
+```objective-c
+CPJMODEL_IMPLEMENT(MSMAge);
+```
+<p>该类所对应的json</p>
+```json
+{
+    "age": {
+                "range": 5,
+                "value": 26
+            }
+}
+```
 <p><code>CREATE_CPJMODEL_BEGAIN(MSMAge)</code>中的MSMAge为model的类名</p>
-<p><code>CPJMODEL_ADD_NSNUMBER_PROPERTY(range, range)</code>中的</p>
+<p><code>CPJMODEL_ADD_NSNUMBER_PROPERTY(range, range)</code>中的CPJMODEL_ADD_NSNUMBER_PROPERTY代表为MSMAge类添加一个数字类型的属性。第一个参数range代表该property的名字，第二个参数rang_interface代表json字典中的key</p>
+<ul>
+<li><code>CPJMODEL_ADD_NSNUMBER_PROPERTY(property_name, key)</code>增加一个数字类型</li>
+<li><code>CPJMODEL_ADD_NSSTRING_PROPERTY(property_name, key)</code>增加一个字符串类型</li>
+<li><code>CPJMODEL_ADD_CPJMODEL_PROPERTY(class, property_name, key)</code>增加一个自定义类型。class为自定义类型的名称</li>
+<li><code>CPJMODEL_ADD_NSARRAY_PROPERTY(class, property_name, key)</code>增加一个数组类型。class为数组中元素的类型</li>
+</ul>
