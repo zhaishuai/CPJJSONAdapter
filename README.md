@@ -59,3 +59,4 @@ result.value;
 NSumber  *range = [[CPJJSONAdapter new] getValueWithPath:@"age.range" fromJSON:dic];
 NSString *string = [[CPJJSONAdapter new] getValueWithPath:@"age.value" fromJSON:dic];
 ```
+##具体实例可以下载源码查看
