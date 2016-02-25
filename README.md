@@ -14,7 +14,6 @@
 ![CPJJSONAdapter使用方式](https://github.com/zhaishuai/CPJJSONAdapter/blob/master/mind.png)
 ####第一种方式
 <p>适用的情况：程序中需要使用某个json字典中的大部分值</p>
-
 #####第一步创建Model类
 <p>在CPJModels.h文件中(CPJModels只是一个示例，可以自行更改其名称)声明model其代码如下所示：</p>
 ```objective-c
@@ -44,3 +43,19 @@ CPJMODEL_IMPLEMENT(MSMAge);
 <li><code>CPJMODEL_ADD_CPJMODEL_PROPERTY(class, property_name, key)</code>增加一个自定义类型。class为自定义类型的名称</li>
 <li><code>CPJMODEL_ADD_NSARRAY_PROPERTY(class, property_name, key)</code>增加一个数组类型。class为数组中元素的类型</li>
 </ul>
+#####第二步将JSON字典转换为model
+```objective-c
+MSMAge *result = [[CPJJSONAdapter alloc] modelsOfClass:MSMAge.class fromJSON:responseDict];
+// 使用result
+//
+result.range;
+result.value;
+```
+<p>modelsOfClass参数MSMAge.class为需要转换的类型；fromJSON参数responseDict为需要转换的JSON字典。</p>
+####第二种方式
+<p>适用的情况：这个JSON字典非常大，但是只需要其中的某几个值的时候</p>
+<p>还以上面的JSON为例子</p>
+```objective-c
+NSumber  *range = [[CPJJSONAdapter new] getValueWithPath:@"age.range" fromJSON:dic];
+NSString *string = [[CPJJSONAdapter new] getValueWithPath:@"age.value" fromJSON:dic];
+```
