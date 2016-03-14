@@ -159,7 +159,9 @@
 }
 
 - (void)check:(NSObject *)objt withValue:(NSObject *)objt2 withRealValue:(NSObject *)objt3{
+    NSLog(@"objt:%@\nobjt2:%@\nobjt3:%@",objt,objt2,objt3);
         NSAssert([objt isEqual:objt2] && [objt2 isEqual:objt3], @"解析错误");
+    
 }
 
 - (void)didReceiveMemoryWarning {
